@@ -26,14 +26,14 @@ const SavedShows = () => {
 
   const movieRef = doc(db, 'users', `${user?.email}`)
   const deleteShow = async (passedID) => {
-      try {
-        const result = movies.filter((item) => item.id !== passedID)
-        await updateDoc(movieRef, {
-            savedShows: result
-        })
-      } catch (error) {
-          console.log(error)
-      }
+    try {
+      const result = movies.filter((item) => item.id !== passedID)
+      await updateDoc(movieRef, {
+        savedShows: result
+      })
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (
@@ -49,7 +49,7 @@ const SavedShows = () => {
           id={'slider'}
           className='w-full h-full overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide relative'
         >
-          {movies.map((item) => (
+          {movies?.map((item) => (
             <div
               key={item.id}
               className='w-[160px] sm:w-[200px] md:w-[240px] lg:w-[280px] inline-block cursor-pointer relative p-2'
@@ -63,7 +63,7 @@ const SavedShows = () => {
                 <p className='white-space-normal text-xs md:text-sm font-bold flex justify-center items-center h-full text-center'>
                   {item?.title}
                 </p>
-                <p onClick={()=> deleteShow(item.id)} className='absolute text-gray-300 top-4 right-4'><AiOutlineClose /></p>
+                <p onClick={() => deleteShow(item.id)} className='absolute text-gray-300 top-4 right-4'><AiOutlineClose /></p>
               </div>
             </div>
           ))}
