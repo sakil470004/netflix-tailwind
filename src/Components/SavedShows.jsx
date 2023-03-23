@@ -9,6 +9,7 @@ const SavedShows = () => {
   const [movies, setMovies] = useState([]);
   const { user } = UserAuth();
 
+  // always need to take scrollLeft
   const slideLeft = () => {
     var slider = document.getElementById('slider');
     slider.scrollLeft = slider.scrollLeft - 500;
